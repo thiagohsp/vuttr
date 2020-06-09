@@ -1,28 +1,87 @@
-# Adonis API application
+FORMAT: 1A
+# VUTTR
 
-This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.
+VUTTR is an anagram of Very Useful Tools to Remember.
 
-1. Bodyparser
-2. Authentication
-3. CORS
-4. Lucid ORM
-5. Migrations and seeds
+## Tools Collection [/tools]
 
-## Setup
+### List All Tools [GET]
 
-Use the adonis command to install the blueprint
++ Response 200 (application/json)
+    
+    + Headers
 
-```bash
-adonis new yardstick --api-only
-```
+            Location: /questions
 
-or manually clone the repo and then run `npm install`.
+    + Body
+
+            {
+                "id": 1,
+                "title": "AdonisJs",
+                "link": "https://adonisjs.com/",
+                "description": "AdonisJs is a Node.js web framework with a breath of fresh air and drizzle of elegant syntax on top of it. We prefer developer joy and stability over anything else.",
+                "tags": [
+                    "javascript",
+                    "adonis",
+                    "web",
+                    "framework",
+                    "mvc"
+                ]
+            }
+        
+        
+    
+
+### Create a New Tool [POST]
+
++ Request (application/json)
+
+        {
+            "title" : "AdonisJs",
+            "link"  : "https://adonisjs.com/",
+            "description" : "AdonisJs is a Node.js web framework with a breath of fresh air and drizzle of elegant syntax on top of it. We prefer developer joy and stability over anything else.",
+            "tags" : "javascript, adonis, web, framework, mvc"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /tools/2
+
+    + Body
+
+            {
+                "title": "apiaryio",
+                "link": "https://apiary.io/",
+                "description": "Powerful API Design Stack. Built for Developers.",
+                "tags": [
+                    "api",
+                    "blueprint",
+                    "api documentation"
+                ],
+                "id": 2
+            }
+
+### Retrieve Tool [GET /tools/{id}]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 2,
+                "title": "apiaryio",
+                "link": "https://apiary.io/",
+                "description": "Powerful API Design Stack. Built for Developers.",
+                "tags": [
+                    "api",
+                    "blueprint",
+                    "api documentation"
+                ]
+            }
 
 
-### Migrations
+### Delete Tool [DELETE /tools/{id}]
 
-Run the following command to run startup migrations.
-
-```js
-adonis migration:run
-```
++ Response 204 (application/json)
